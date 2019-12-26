@@ -1,0 +1,12 @@
+.wind-indicator {
+  position: relative;
+  svg {
+    margin: auto;
+  }
+
+  .flow-text {
+    right: 30%;
+    position: absolute;
+    top: 0
+  }
+}
