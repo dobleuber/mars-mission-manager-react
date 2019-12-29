@@ -64,32 +64,32 @@ const windData = [
 const weatherData = [
   {
     time: 1,
-    humidity: 100,
+    pressure: 500,
     temp: 288,
   },
   {
     time: 2,
-    humidity: 100,
+    pressure: 500,
     temp: 288,
   },
   {
     time: 3,
-    humidity: 100,
+    pressure: 500,
     temp: 287,
   },
   {
     time: 4,
-    humidity: 100,
+    pressure: 500,
     temp: 287,
   },
   {
     time: 5,
-    humidity: 100,
+    pressure: 500,
     temp: 287,
   },
   {
     time: 6,
-    humidity: 100,
+    pressure: 500,
     temp: 288,
   },
 ]
@@ -103,9 +103,15 @@ function getRandomInt(num) {
 function getWeatherData() {
   weatherData.shift()
   const last = weatherData[weatherData.length - 1]
+  let pressure = last.pressure + getRandomInt(2)
+  if (pressure > 600) {
+    pressure = 600
+  }
+
   weatherData.push({
-    humidity: last.humidity + getRandomInt(2),
+    pressure,
     temp: last.temp + getRandomInt(5),
+    time: (last.time + 1) % 24,
   })
 
   return weatherData;
@@ -121,7 +127,8 @@ function getWindData() {
 
   windData.push({
     deg: Math.abs((last.deg + getRandomInt(10)) % 360),
-    speed: Math.abs(newSpeed)
+    speed: Math.abs(newSpeed),
+    time: (last.time + 1) % 24,
   })
 
   return windData

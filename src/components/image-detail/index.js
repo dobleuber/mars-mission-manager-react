@@ -9,6 +9,7 @@ class ImageDetail extends React.Component{
   render() {
     return (
       <img
+        id="imageDetail"
         className="materialboxed responsive-img"
         ref={ (materialBox) => {this.materialBox = materialBox} }
         src={this.props.src}

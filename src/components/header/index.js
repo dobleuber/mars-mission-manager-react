@@ -12,7 +12,7 @@ export default () => (
       </a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><a href="//github.com/jaredpalmer/razzle" target="_blank">Razzle</a></li>
-        <li><a href="//recharts.org" target="_blank">recharts</a></li>
+        <li><a href="//recharts.org" target="_blank">Recharts</a></li>
         <li><a href="//materializecss.com/navbar.html" target="_blank">MaterializeCss</a></li>
       </ul>
     </div>

@@ -1,3 +1,5 @@
+@use '../../sass/materialize';
+
 .wind-indicator {
   position: relative;
   svg {
@@ -8,5 +10,17 @@
     right: 30%;
     position: absolute;
     top: 0
+  }
+
+  circle {
+
+  }
+
+  polygon#polygonArrow {
+
+  }
+
+  line#arrow {
+
   }
 }

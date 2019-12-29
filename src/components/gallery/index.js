@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {imageArray} from '../../utils/image-loader'
+import PropTypes from 'prop-types'
 
 class Gallery extends React.Component {
     componentDidMount() {
@@ -21,7 +21,7 @@ class Gallery extends React.Component {
             ref={ (carousel) => {this.carousel = carousel} }
           >
             {
-              imageArray.map((img, i) => (
+              this.props.imageArray.map((img, i) => (
                 <a
                   key={i}
                   className="carousel-item" href={`#${i}!`}
@@ -40,8 +40,13 @@ class Gallery extends React.Component {
     }
 
     setImage = (index) => () => {
-      this.props.setSelectedImage(imageArray[index])
+      this.props.setSelectedImage(this.props.imageArray[index])
     }
+}
+
+Gallery.propTypes = {
+  imageArray: PropTypes.array,
+  setSelectedImage: PropTypes.func,
 }
 
 export default Gallery

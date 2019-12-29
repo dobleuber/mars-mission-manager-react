@@ -8,7 +8,6 @@ import mars7 from '../../resources/images/mars_7.jpg'
 import mars8 from '../../resources/images/mars_8.jpg'
 import mars9 from '../../resources/images/mars_9.jpg'
 
-
 const images = {
   mars1,
   mars2,
