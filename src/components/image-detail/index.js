@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './styles.scss'
+
 class ImageDetail extends React.Component{
   componentDidMount() {
     if (typeof window !== 'undefined') {
@@ -9,7 +11,6 @@ class ImageDetail extends React.Component{
   render() {
     return (
       <img
-        id="imageDetail"
         className="materialboxed responsive-img"
         ref={ (materialBox) => {this.materialBox = materialBox} }
         src={this.props.src}

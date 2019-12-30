@@ -13,7 +13,7 @@ class Map extends React.Component {
     const {position} = this.props
     return (
       <GoogleMap
-        defaultZoom={10}
+        defaultZoom={12}
         defaultCenter={{ lat: 36.5859551, lng: -116.771886 }}
         mapTypeId={'satellite'}
       >

@@ -24,7 +24,7 @@ class Gallery extends React.Component {
               this.props.imageArray.map((img, i) => (
                 <a
                   key={i}
-                  className="carousel-item" href={`#${i}!`}
+                  className="carousel-item"
                   onClick={this.setImage(i)}
                 >
                   <img src={img}/>

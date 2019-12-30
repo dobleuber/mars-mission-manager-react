@@ -19,27 +19,15 @@ export class PortalContainer extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
-    if (!this.props.containerId && nextProps.containerId) {
-      const containerRoot = document.getElementById(nextProps.containerId);
-      if (containerRoot) {
-        containerRoot.appendChild(this.el);
-      }
-    }
-    if (this.props.containerId && this.props.containerId !== nextProps.containerId) {
-      const containerRootNext = document.getElementById(nextProps.containerId);
-      const containerRoot = document.getElementById(this.props.containerId);
+  componentDidUpdate(prevProps) {
+    if (this.props.containerId && this.props.containerId !== prevProps.containerId) {
+      const containerRootNext = document.getElementById(this.props.containerId);
+      const containerRoot = document.getElementById(prevProps.containerId);
       if (containerRoot && containerRoot.contains(this.el)) {
         containerRoot.removeChild(this.el);
       }
       if (containerRootNext) {
         containerRootNext.appendChild(this.el);
-      }
-    }
-    if (this.props.containerId && !nextProps.containerId) {
-      const containerRoot = document.getElementById(this.props.containerId);
-      if (containerRoot && containerRoot.contains(this.el)) {
-        containerRoot.removeChild(this.el);
       }
     }
   }
