@@ -2,51 +2,38 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-class Gallery extends React.Component {
-    componentDidMount() {
-      if (typeof window !== 'undefined') {
-        const ops = {
-          indicators: true,
-          numVisible: 5,
-        }
-        this.carouselInstance = M.Carousel.init(this.carousel, ops)
-      }
-    }
+import './styles.scss'
 
-    render() {
-        return (
-          <div
-            className="carousel"
-            id="carousel"
-            ref={ (carousel) => {this.carousel = carousel} }
-          >
-            {
-              this.props.imageArray.map((img, i) => (
-                <a
-                  key={i}
-                  className="carousel-item"
-                  onClick={this.setImage(i)}
-                >
-                  <img src={img}/>
-                </a>)
-              )
-            }
-          </div>
+function Gallery (props) {
+  const setImage = (index) => () => {
+    props.setSelectedImageIndex(index)
+  }
+  return (
+    <div
+      id="gallery"
+    >
+      {
+        props.imageArray.map((img, i) => (
+            <img
+              className={[
+                i === props.selectedImageIndex ? 'active' : '',
+                'gallery-item',
+              ].join(' ')}
+              key={i}
+              onClick={setImage(i)}
+              src={img}
+            />
+          )
         )
-    }
-
-    componentWillUnmount() {
-      this.carouselInstance.destroy()
-    }
-
-    setImage = (index) => () => {
-      this.props.setSelectedImage(this.props.imageArray[index])
-    }
+      }
+    </div>
+  )
 }
 
 Gallery.propTypes = {
   imageArray: PropTypes.array,
-  setSelectedImage: PropTypes.func,
+  selectedImageIndex: PropTypes.number,
+  setSelectedImageIndex: PropTypes.func,
 }
 
 export default Gallery

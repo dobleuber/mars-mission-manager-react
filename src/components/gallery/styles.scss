@@ -1,0 +1,17 @@
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-height: 500px;
+  overflow-y: auto;
+
+  .gallery-item {
+    border-radius: 0.25em;
+    margin: 0.5em;
+    width: calc(33% - 1em);
+
+    &.active {
+      box-shadow: 0 0 6px 4px #F44336;
+    }
+  }
+}

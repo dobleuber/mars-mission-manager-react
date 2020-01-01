@@ -20,7 +20,7 @@ const videoSources = [{
 class Home extends React.Component {
   state = {
     position: null,
-    selectedImage: imageArray[0],
+    selectedImageIndex: 0,
     swap: false,
     weatherData: [],
     windData: [],
@@ -53,7 +53,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const {position, selectedImage, weatherData, windData} = this.state;
+    const {position, selectedImageIndex, weatherData, windData} = this.state;
     return (
       <>
         <Helmet>
@@ -69,25 +69,26 @@ class Home extends React.Component {
           </div>
           <div className="row">
             <div id="container-2" className="col m6" >
-              <Gallery setSelectedImage={this.setImage} imageArray={imageArray}/>
             </div>
             <div id="container-3" className="col m6" />
           </div>
         </div>
         <Dashboard
+          imageArray={imageArray}
           position={position}
-          selectedImage={selectedImage}
+          selectedImageIndex={selectedImageIndex}
+          setSelectedImageIndex={this.setImage}
+          videoSources={videoSources}
           weatherData={weatherData}
           windData={windData}
-          videoSources={videoSources}
         />
       </>
     )
   }
 
-  setImage = (image) => {
+  setImage = (index) => {
     this.setState({
-      selectedImage: image
+      selectedImageIndex: index
     })
   }
 }

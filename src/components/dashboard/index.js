@@ -8,10 +8,13 @@ import PortalContainer from '../portal-container'
 import WeatherChart from '../weather-chart'
 import WindIndicator from '../wind-indicator'
 import StreamPlayer from '../stream-player'
+import {imageArray} from '../../utils/image-loader'
+import Gallery from '../gallery'
 
 const initialContainers = {
   'imageDetail': 'container-0',
   'weatherDetail': 'container-1',
+  'gallery': 'container-2',
   'stream': 'container-3',
 }
 
@@ -32,7 +35,7 @@ export default (props) => {
           setContainer={setContainer}
         >
           <ImageDetail
-            src={props.selectedImage}
+            src={props.imageArray[props.selectedImageIndex]}
           />
         </Draggable>
       </PortalContainer>
@@ -87,6 +90,25 @@ export default (props) => {
             width={'600px'}
           />
         </Draggable>
+      </PortalContainer>
+      <PortalContainer
+        containerId={containers['gallery']}
+      >
+        <Draggable
+          dragItem={dragItem}
+          name="gallery"
+          setDraggable={setDraggable}
+          changeContainers={changeContainers}
+          containers={containers}
+          setContainer={setContainer}
+        >
+          <Gallery
+            selectedImageIndex={props.selectedImageIndex}
+            setSelectedImageIndex={props.setSelectedImageIndex}
+            imageArray={props.imageArray}
+          />
+        </Draggable>
+
       </PortalContainer>
     </>
   )
