@@ -97,7 +97,7 @@ const weatherData = [
 function getRandomInt(num) {
   const min = -num
   const max = num + 1
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 function getWeatherData() {
@@ -114,7 +114,7 @@ function getWeatherData() {
     time: (last.time + 1) % 24,
   })
 
-  return weatherData;
+  return weatherData
 }
 
 function getWindData() {
@@ -131,10 +131,7 @@ function getWindData() {
     time: (last.time + 1) % 24,
   })
 
-  return windData
+  return windData[0]
 }
 
-export {
-  getWeatherData,
-  getWindData
-}
+export { getWeatherData, getWindData }

@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 import './styles.scss'
 
 function WindIndicator (props) {
-  const {data} = props;
+  const {data} = props
 
-  if (!data.length) {
+  if(!data) {
     return null
   }
 
-  const last = data.slice(-1).pop();
+  const last = data
 
   return (
     <div className="wind-indicator valign-wrapper">
@@ -55,11 +55,11 @@ function WindIndicator (props) {
 }
 
 WindIndicator.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
+  data: PropTypes.shape({
     deg: PropTypes.number,
     speed: PropTypes.number,
     time: PropTypes.number,
-  }))
+  })
 }
 
 export default WindIndicator

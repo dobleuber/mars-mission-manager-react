@@ -17,7 +17,7 @@ const images = {
   mars6,
   mars7,
   mars8,
-  mars9
+  mars9,
 }
 
 const imageArray = [
@@ -29,7 +29,7 @@ const imageArray = [
   mars6,
   mars7,
   mars8,
-  mars9
+  mars9,
 ]
 
-export {images, imageArray}
+export { images, imageArray }

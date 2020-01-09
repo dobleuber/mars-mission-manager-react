@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Helmet} from 'react-helmet'
 
 import Header from './components/header';
@@ -10,7 +10,8 @@ import './Home.scss'
 
 import getRoverPosition from './utils/rover-position'
 import {getWeatherData, getWindData} from './utils/weather-data'
-import Gallery from './components/gallery'
+import {historyLogData} from './utils/history-log-data'
+import HistoryLog from './components/history-log'
 
 const videoSources = [{
   src: "//vjs.zencdn.net/v/oceans.mp4",
@@ -19,11 +20,13 @@ const videoSources = [{
 
 class Home extends React.Component {
   state = {
+    currentHistoryDate: null,
+    historyLogData: historyLogData,
     position: null,
     selectedImageIndex: 0,
     swap: false,
     weatherData: [],
-    windData: [],
+    windData: null,
   }
 
   componentDidMount() {
@@ -53,7 +56,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const {position, selectedImageIndex, weatherData, windData} = this.state;
+    const {currentHistoryDate, historyLogData, position, selectedImageIndex, weatherData, windData} = this.state;
+    let historyRowData = historyLogData.find(d => d.date === currentHistoryDate)
     return (
       <>
         <Helmet>
@@ -63,6 +67,13 @@ class Home extends React.Component {
         </Helmet>
         <Header />
         <div className="Home container">
+          <div className="row">
+            <HistoryLog
+              currentHistoryRowData={historyRowData}
+              data={historyLogData}
+              setCurrentTimeStamp={this.setCurrentTimeStamp}
+            />
+          </div>
           <div className="row">
             <div id="container-0" className="col m6" />
             <div id="container-1" className="col m6" />
@@ -74,6 +85,8 @@ class Home extends React.Component {
           </div>
         </div>
         <Dashboard
+          currentHistoryRowData={historyRowData}
+          historyLogData={historyLogData}
           imageArray={imageArray}
           position={position}
           selectedImageIndex={selectedImageIndex}
@@ -84,6 +97,12 @@ class Home extends React.Component {
         />
       </>
     )
+  }
+
+  setCurrentTimeStamp = (date) => () => {
+    this.setState({
+      currentHistoryDate: date
+    })
   }
 
   setImage = (index) => {

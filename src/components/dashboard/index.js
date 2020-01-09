@@ -8,7 +8,6 @@ import PortalContainer from '../portal-container'
 import WeatherChart from '../weather-chart'
 import WindIndicator from '../wind-indicator'
 import StreamPlayer from '../stream-player'
-import {imageArray} from '../../utils/image-loader'
 import Gallery from '../gallery'
 
 const initialContainers = {
@@ -21,6 +20,17 @@ const initialContainers = {
 export default (props) => {
   const [dragItem, setDraggable] = useState(null)
   const [containers, setContainer] = useState(initialContainers)
+  const {currentHistoryRowData} = props
+  let {position, selectedImageIndex, weatherData, windData} = props
+
+  if (currentHistoryRowData) {
+    selectedImageIndex = currentHistoryRowData.data.picture
+    weatherData = currentHistoryRowData.data.weather
+    windData = currentHistoryRowData.data.wind
+    position = currentHistoryRowData.data.location
+  }
+
+  const currentImage = props.imageArray[selectedImageIndex]
   return (
     <>
       <PortalContainer
@@ -35,7 +45,7 @@ export default (props) => {
           setContainer={setContainer}
         >
           <ImageDetail
-            src={props.imageArray[props.selectedImageIndex]}
+            src={currentImage}
           />
         </Draggable>
       </PortalContainer>
@@ -54,15 +64,15 @@ export default (props) => {
             <div className="col m6">
               <div className="row">
                 <div className="col m12">
-                  <WeatherChart data={props.weatherData} />
+                  <WeatherChart data={weatherData} />
                 </div>
                 <div className="col m12">
-                  <WindIndicator data={props.windData}/>
+                  <WindIndicator data={windData}/>
                 </div>
               </div>
             </div>
             <div className="col m6">
-              <Map position={props.position} />
+              <Map position={position} />
             </div>
           </div>
         </Draggable>
