@@ -121,8 +121,8 @@ function getWindData() {
   windData.shift()
   const last = windData[windData.length - 1]
   let newSpeed = last.speed + getRandomInt(5)
-  if (newSpeed > 200) {
-    newSpeed = 200
+  if (newSpeed > 100) {
+    newSpeed = 100
   }
 
   windData.push({

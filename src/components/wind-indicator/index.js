@@ -11,6 +11,12 @@ function WindIndicator (props) {
     return null
   }
 
+  const {speed} = data
+
+  const maxArrowLength = 70;
+
+  const arrowLength = maxArrowLength * speed / 100
+
   const last = data
 
   return (
@@ -40,7 +46,7 @@ function WindIndicator (props) {
           id="arrow"
           x1="0"
           y1="0"
-          x2="50"
+          x2={arrowLength}
           y2="0"
           stroke="#F44336"
           strokeWidth="4"
